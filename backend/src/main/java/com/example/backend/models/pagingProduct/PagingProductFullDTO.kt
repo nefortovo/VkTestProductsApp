@@ -1,4 +1,4 @@
-package com.example.backend.models
+package com.example.backend.models.pagingProduct
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -24,6 +24,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class PagingProductFullDTO (
+     @SerialName("id") val id: Int? = null,
      @SerialName("title") val title: String? = null,
      @SerialName("description") val description: String? = null,
      @SerialName("price") val price: Int? = 0,

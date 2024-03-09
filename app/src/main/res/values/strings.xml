@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">VkTestProductsApp</string>
+    <string name="price">$ %s</string>
+    <string name="rating">Rating  ★%s</string>
 </resources>

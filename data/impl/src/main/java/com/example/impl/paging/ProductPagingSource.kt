@@ -1,10 +1,9 @@
 package com.example.impl.paging
 
-import android.util.Log
 import androidx.paging.PagingState
 import com.example.backend.api.ProductsApi
 import com.example.backend.utils.ResponseStatus
-import com.example.base.entities.ProductEntity
+import com.example.base.entities.ProductFullEntity
 import com.example.impl.base.BasePagingDataSource
 import com.example.impl.mappers.asEntity
 
@@ -12,15 +11,15 @@ class ProductPagingSource(
     private val productsApi: ProductsApi,
     private val initCount: Int = LIMIT,
     private val initPage: Int = PAGE,
-): BasePagingDataSource<ProductEntity>() {
-    override fun getRefreshKey(state: PagingState<Int, ProductEntity>): Int? {
+): BasePagingDataSource<ProductFullEntity>() {
+    override fun getRefreshKey(state: PagingState<Int, ProductFullEntity>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ProductEntity> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ProductFullEntity> {
 
         val pageNumber = params.key ?: initPage
         val pageSize = params.loadSize.coerceAtMost(initCount)

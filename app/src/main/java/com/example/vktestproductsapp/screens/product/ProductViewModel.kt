@@ -1,15 +1,11 @@
-package com.example.vktestproductsapp.screens.main
+package com.example.vktestproductsapp.screens.product
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
 import com.example.base.entities.Entity
-import com.example.base.entities.ProductFullEntity
 import com.example.base.repositories.ProductsRepository
-import com.example.vktestproductsapp.screens.main.model.MainUIState
+import com.example.vktestproductsapp.screens.product.model.ProductUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -17,24 +13,20 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class ProductViewModel @Inject constructor(
     private val productsRepository: ProductsRepository
 ): ViewModel() {
 
-    private val _uiState = MutableStateFlow(MainUIState())
+    private val _uiState = MutableStateFlow(ProductUIState())
     val uiState = _uiState.asStateFlow()
 
-    private var _productList: Flow<PagingData<ProductFullEntity>> =
-        productsRepository.getCategoryProducts()
-    val productList: Flow<PagingData<ProductFullEntity>> = _productList.cachedIn(viewModelScope)
-
-    suspend fun getCategories(){
+    suspend fun getData(id: Int){
         viewModelScope.launch {
-            when (val response = productsRepository.getCategories()) {
+            when (val response = productsRepository.getProduct(id)) {
                 is Entity.Success -> {
                     _uiState.update { uiState ->
                         uiState.copy(
-                            listCategories = response.data
+                            productFullEntity = response.data
                         )
                     }
                 }
@@ -49,5 +41,4 @@ class MainViewModel @Inject constructor(
             }
         }
     }
-
 }

@@ -1,17 +1,19 @@
 package com.example.vktestproductsapp.navigation
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.vktestproductsapp.navigation.Screens.Companion.NAME_KEY
+import com.example.vktestproductsapp.navigation.Screens.Companion.ID_KEY
 import com.example.vktestproductsapp.screens.main.MainScreen
 import com.example.vktestproductsapp.screens.product.ProductScreen
 
@@ -25,7 +27,8 @@ fun Navigation(modifier: Modifier) {
         NavHost(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(padding),
+                .padding(padding)
+                .background(Color(0xFFB8B8C8)),
             navController = navController,
             startDestination = Screens.MainScreen.destination()
         ) {
@@ -38,17 +41,17 @@ fun Navigation(modifier: Modifier) {
 
             composable(
                 route = Screens.ProductScreen.screenRoute,
-                arguments = listOf(navArgument(NAME_KEY) {
-                    type = NavType.StringType
+                arguments = listOf(navArgument(ID_KEY) {
+                    type = NavType.IntType
                     nullable = false
                 })
             ) { navBackStackEntry ->
-                val name = navBackStackEntry.arguments?.getString(NAME_KEY).toString()
+                val id = navBackStackEntry.arguments?.getInt(ID_KEY)
                 ProductScreen(
                     onBack = navController::popBackStack,
                     modifier = Modifier
                         .fillMaxSize(),
-                    name = name
+                    id = id!!
                 )
             }
         }
@@ -69,16 +72,16 @@ sealed class Screens(
     }
 
     object ProductScreen : Screens(
-        screenRoute = "$productDetailsScreen/{$NAME_KEY}",
+        screenRoute = "$productDetailsScreen/{$ID_KEY}",
     ) {
-        fun destination(name: String): String {
+        fun destination(name: Int): String {
             return "$productDetailsScreen/$name"
         }
     }
 
 
     companion object {
-        const val NAME_KEY = "name"
+        const val ID_KEY = "-1"
 
 
         const val mainScreenRoute = "mainScreen"

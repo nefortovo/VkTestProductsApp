@@ -1,14 +1,8 @@
 package com.example.base.entities
 
-data class ProductEntity (
-    val title: String? = null,
-    val description: String? = null,
-    val price: Int? = 0,
-    val discountPercentage: Double? = 0.0,
-    val rating: Double? = 0.0,
-    val stock: Int? = null,
-    val brand: String? = null,
-    val category: String? = null,
-    val thumbnail: String? = null,
-    val images: List<String>? = emptyList(),
+data class ProductEntity(
+    val products: List<ProductFullEntity>,
+    val total: Int,
+    val skip: Int,
+    val limit: Int,
 )

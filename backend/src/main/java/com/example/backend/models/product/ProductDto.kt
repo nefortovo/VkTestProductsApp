@@ -1,12 +1,14 @@
-package com.example.backend.models
+package com.example.backend.models.product
 
+import com.example.backend.models.pagingProduct.PagingProductFullDTO
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PagingProductDTO(
-    @SerialName("products") val products: List<PagingProductFullDTO>,
+data class ProductDto(
+    @SerialName("products") val products: List<ProductFullDto>,
     @SerialName("total") val total: Int,
     @SerialName("skip") val skip: Int,
     @SerialName("limit") val limit: Int,
 )
+

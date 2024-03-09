@@ -27,6 +27,9 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+
+    implementation(project(":backend"))
+    
     testImplementation(libs.junit)
 
     implementation(libs.androidx.paging.runtime.ktx)
