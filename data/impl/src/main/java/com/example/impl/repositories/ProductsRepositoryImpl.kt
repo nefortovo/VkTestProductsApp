@@ -34,6 +34,7 @@ class ProductsRepositoryImpl(
 
 
 
+
     override suspend fun getProduct(id: Int): Entity<ProductFullEntity> {
         return when (val response = safeApiSuspendResult {
             productsApi.getProduct(id)
