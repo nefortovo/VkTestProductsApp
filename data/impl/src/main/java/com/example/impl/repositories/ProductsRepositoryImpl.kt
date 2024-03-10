@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.Flow
 class ProductsRepositoryImpl(
     private val productsApi: ProductsApi
 ): ProductsRepository, BaseRepository(ProductsRepository::class.toString()) {
-    override fun getCategoryProducts(): Flow<PagingData<ProductFullEntity>>
+    override fun getProducts(): Flow<PagingData<ProductFullEntity>>
     {
         return Pager(
             config = PagingConfig(
@@ -31,6 +31,7 @@ class ProductsRepositoryImpl(
             }
         ).flow
     }
+
 
 
     override suspend fun getProduct(id: Int): Entity<ProductFullEntity> {

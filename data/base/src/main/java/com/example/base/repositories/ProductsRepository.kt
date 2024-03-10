@@ -9,7 +9,7 @@ interface ProductsRepository {
 
 
 
-    fun getCategoryProducts(): Flow<PagingData<ProductFullEntity>>
+    fun getProducts(): Flow<PagingData<ProductFullEntity>>
 
     suspend fun getProduct(id: Int): Entity<ProductFullEntity>
     suspend fun getCategories(): Entity<List<String>>

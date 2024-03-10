@@ -40,29 +40,11 @@ fun MainScreen(
     val uiState by viewModel.uiState.collectAsState()
 
 
-    LaunchedEffect(Unit){
-        viewModel.getCategories()
-    }
 
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-//        LazyVerticalGrid(columns = GridCells.Fixed(2),
-//            modifier = Modifier
-//                .padding(horizontal = 13.dp)){
-//            items(productList){
-//                product ->
-//                SkeletonWithContent(showSkeleton = product == null,
-//                    modifier = Modifier
-//                        .fillMaxSize()) {
-//                    ProductItem(modifier = Modifier
-//                        .clickable { product?.id?.let { navigateToProduct(it) } }
-//                        .padding(top = 15.dp)
-//                        .padding(horizontal = 5.dp), product = product!!,)
-//                }
-//            }
-//        }
 
         LazyRow(
             modifier = Modifier
@@ -74,7 +56,7 @@ fun MainScreen(
                     modifier = Modifier
                         .padding(horizontal = 15.dp)
                         .clickable{
-
+                            viewModel.setCategory(item)
                         }
                 )
             }

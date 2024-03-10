@@ -7,7 +7,7 @@ import androidx.paging.cachedIn
 import com.example.base.entities.Entity
 import com.example.base.entities.ProductFullEntity
 import com.example.base.repositories.ProductsRepository
-import com.example.vktestproductsapp.screens.main.model.MainUIState
+import com.example.vktestproductsapp.screens.main.model.MainState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,16 +19,30 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val productsRepository: ProductsRepository
-): ViewModel() {
+) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(MainUIState())
+    private val category = MutableStateFlow("")
+
+    private val _uiState = MutableStateFlow(MainState())
     val uiState = _uiState.asStateFlow()
 
-    private var _productList: Flow<PagingData<ProductFullEntity>> =
-        productsRepository.getCategoryProducts()
+    private var _productList: Flow<PagingData<ProductFullEntity>> = productsRepository.getProducts()
     val productList: Flow<PagingData<ProductFullEntity>> = _productList.cachedIn(viewModelScope)
 
-    suspend fun getCategories(){
+
+    fun setCategory(value: String) {
+        if (this.category.value == value) return
+        this.category.value = value
+    }
+
+
+    init {
+        viewModelScope.launch {
+            getCategories()
+        }
+    }
+
+    private suspend fun getCategories() {
         viewModelScope.launch {
             when (val response = productsRepository.getCategories()) {
                 is Entity.Success -> {
