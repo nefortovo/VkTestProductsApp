@@ -1,6 +1,7 @@
 # Shopping App
 
-This is an Android application designed to facilitate shopping for various items. The app utilizes modern Android development practices and libraries to provide a smooth and efficient shopping experience.
+This is an Android application designed to facilitate shopping for various items.
+
 
 ## Libraries
 
