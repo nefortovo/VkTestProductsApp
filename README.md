@@ -1,28 +1,29 @@
-﻿# VkTestProductsApp
- 
-Shopping App
+# Shopping App
+
 This is an Android application designed to facilitate shopping for various items. The app utilizes modern Android development practices and libraries to provide a smooth and efficient shopping experience.
 
-Features
-Coroutines and Flow: Leveraging Kotlin Coroutines and Flow for asynchronous and reactive programming, ensuring efficient handling of background tasks and data streams.
+## Libraries
 
-Paging3: Implemented for pagination, allowing seamless loading of large datasets without compromising performance or user experience.
+- **Coroutines and Flow:** Leveraging Kotlin Coroutines and Flow for asynchronous and reactive programming, ensuring efficient handling of background tasks and data streams.
 
-Coil: Utilized for image loading and caching, ensuring fast and efficient image loading while conserving device resources.
+- **Paging3:** Implemented for pagination, allowing seamless loading of large datasets without compromising performance or user experience.
 
-Jetpack Compose: Employed for building the user interface, providing a modern and declarative approach to UI development.
+- **Coil:** Utilized for image loading and caching, ensuring fast and efficient image loading while conserving device resources.
 
-Multi-module Architecture: Designed with a modular architecture to promote scalability, maintainability, and code organization.
+- **Jetpack Compose:** Employed for building the user interface, providing a modern and declarative approach to UI development.
 
-Retrofit and OkHttp: Integrated for network communication, enabling seamless interaction with backend APIs.
+- **Multi-module Architecture:** Designed with a modular architecture to promote scalability, maintainability, and code organization.
 
-Navigation Compose: Used for navigation between different screens, providing a smooth and consistent user experience.
+- **Retrofit and OkHttp:** Integrated for network communication, enabling seamless interaction with backend APIs.
 
-Dagger-Hilt: Employed for dependency injection, facilitating the management of dependencies and promoting code modularity and testability.
+- **Navigation Compose:** Used for navigation between different screens, providing a smooth and consistent user experience.
 
-Modules
-app: Main application module containing the UI logic and user interaction components.
+- **Dagger-Hilt:** Employed for dependency injection, facilitating the management of dependencies and promoting code modularity and testability.
 
-backend: Module responsible for handling network requests and communication with backend services.
+## Modules
 
-data: Module responsible for data handling, including data retrieval from remote and local sources.
+- **app:** Main application module containing the UI logic and user interaction components.
+
+- **backend:** Module responsible for handling network requests and communication with backend services.
+
+- **data:** Module responsible for data handling, including data retrieval from remote and local sources.
